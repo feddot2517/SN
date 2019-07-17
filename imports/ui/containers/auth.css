@@ -1,0 +1,195 @@
+.uraccount {
+    padding: 20px;
+    overflow: hidden;
+    font: normal 30px/1 Arial, Gadget, sans-serif;
+
+    color: rgba(255,255,255,1);
+    text-align: center;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    text-shadow: none ;
+
+
+
+}
+
+
+.login {
+    padding: 50px;
+    width: 50%;
+    height: 350px;
+    display: inline-block;
+    float: left;
+
+    background: rgba(0,0,0,0.05);
+}
+
+.login2 {
+    min-width: 300px;
+    display: inline-block;
+    padding: 50px;
+    width: 40%;
+    height: 350px;
+}
+
+.register {
+    min-width: 300px;
+    padding: 50px 10% 50px 10%;
+    background: rgba(0,0,0,0.05);
+}
+
+.userpage{
+    padding: 84px 0 0 0;
+    min-height: 1000px;
+    font: normal 30px/1 Arial Black, Gadget, sans-serif;
+}
+
+
+
+.hello {
+    z-index: 10;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    overflow: hidden;
+    border: none;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    font: normal 200%/0.5 Arial Black, Gadget, sans-serif;
+
+    color: rgba(255,255,255,1);
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+
+
+.logout {
+    margin: -100px;
+    top: 25%;
+    color: white;
+
+    font: normal 15px/0 Arial Black, Gadget, sans-serif;
+}
+.logout:hover{
+    color: gainsboro;
+}
+
+
+
+
+.userpage2{
+    font: normal 20px/2 Verdana , Gadget, sans-serif;
+    margin: -20px 5% 0 5%;
+    padding: 70px 0 0 0;
+    color: #1e1e1e;
+    height: 600px;
+
+    overflow: hidden;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(201,201,201,0.37);
+}
+
+.account_information{
+    padding: 30px;
+    width: 50%;
+    height: 350px;
+    display: inline-block;
+    text-align: center;
+    float: left;
+    text-shadow: none ;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.elements{
+    position: absolute;
+    top: 100px;
+    width:50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    background: rgba(0,0,0,0.21);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.small_elements{
+    position: absolute;
+    top: 100px;
+    width:40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    background: rgba(0,0,0,0.21);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.items_elements{
+    padding-left:30px;
+    position: absolute;
+    top: 80px;
+    width:100%;
+}
+
+.myItems{
+    width:20%;
+    float: left;
+    background: rgba(245, 245, 245, 0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.horizontalLine{
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.41);
+}
+
+.information_about_my_item{
+    padding: 20px;
+    text-align: center;
+}
+
+.item_to_rent{
+    padding: 20px;
+    background-color: rgba(0,0,0,0.21);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    width: 20%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+.list_of_items{
+    width: 80%;
+    float: right;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.label{
+    text-shadow: none ;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.buttons_of_account{
+    /*padding: 30px;*/
+    padding-top:50px;
+    width: 30%;
+    height: 350px;
+    display: inline-block;
+    float: center;
+    text-shadow: none ;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+
+}
