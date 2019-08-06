@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Icon, Button } from 'antd';
+import { Form, Input, Icon, Button, Message } from 'antd';
 
 const FormItem = Form.Item;
 
@@ -17,7 +17,7 @@ class RegistrationForm extends React.Component {
                     if(err)
                         alert(err);
                     else{
-                        alert("successful");
+                        alert("successful sign up. login . . . ");
                         Meteor.loginWithPassword(values.username, values.password);
                         this.props.history.push('/');
                     }
@@ -121,6 +121,31 @@ class RegistrationForm extends React.Component {
                                     <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" />
                                 )}
                             </FormItem>
+
+                            <FormItem>
+                                {getFieldDecorator('phone', {
+                                    rules: [],
+                                })(
+                                    <Input placeholder="Phone" />
+                                )}
+                            </FormItem>
+
+                            <FormItem>
+                                {getFieldDecorator('firstName', {
+                                    rules: [],
+                                })(
+                                    <Input placeholder="First Name" />
+                                )}
+                            </FormItem>
+
+                            <FormItem>
+                                {getFieldDecorator('lastName', {
+                                    rules: [],
+                                })(
+                                    <Input placeholder="Last Name" />
+                                )}
+                            </FormItem>
+
                             <FormItem>
 
                                 <Button type="primary" style={{marginRight: '10px'}} onClick={this.handleBack.bind(this)}>

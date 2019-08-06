@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import BaseRouter from './router';
 import {withTracker} from "meteor/react-meteor-data";
+import CustomLayout from "./customLayout"
 
 // App component - represents the whole app
 class App extends Component {
@@ -9,7 +10,9 @@ class App extends Component {
         return (
             <div>
             <Router>
+            <CustomLayout>
                 <BaseRouter />
+            </CustomLayout>
             </Router>
             </div>
         );
