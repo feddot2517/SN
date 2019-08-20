@@ -1,12 +1,11 @@
 import { Class } from 'meteor/jagi:astronomy';
 
 
-const News = Class.create({                  // Main class of userAs
+const News = Class.create({
     name: 'News',
-    collection: new Meteor.Collection('news'),    // Creating the collection of friends in database
+    collection: new Meteor.Collection('news'),
 
-    fields: {// fields that users will have and the type of this field
-
+    fields: {
         id1: {
             type: String,
             optional: true,
@@ -19,6 +18,11 @@ const News = Class.create({                  // Main class of userAs
 
         },
     },
+
+    behaviors: { timestamp: {
+            hasCreatedField: true,
+            createdFieldName: 'createdAt',
+        } },
 
 });
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Accounts} from "meteor/accounts-base";
 import {withTracker} from 'meteor/react-meteor-data';
-import {Form, Icon, Input, Button, Card} from 'antd';
+import {message, Form, Icon, Input, Button, Card} from 'antd';
 import Profile from "../../models/profile";
 
 const FormItem = Form.Item;
@@ -14,6 +14,7 @@ class find extends Component {
 
     addFriend = (current ,friendLogin) => {
         Meteor.call('addFriendShip', current, friendLogin)
+        message.success('Friend added');
     };
 
     onClickFind = e => {
@@ -44,7 +45,7 @@ class find extends Component {
                     </FormItem>
 
 
-                    <FormItem><h1>Результаты поиска:</h1></FormItem>
+                    <FormItem><h1>Result:</h1></FormItem>
 
                 </Form>
                 <div>

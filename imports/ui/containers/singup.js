@@ -17,9 +17,9 @@ class RegistrationForm extends React.Component {
                     if(err)
                         alert(err);
                     else{
-                        alert("successful sign up. login . . . ");
                         Meteor.loginWithPassword(values.username, values.password);
                         this.props.history.push('/');
+                        message.success('successful sign up. login . . .');
                     }
 
                 });

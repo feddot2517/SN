@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+.userRefsInNews {
+    margin-right: 15px;
+    margin-top: 15px;
+    color: black;
+    width: 100%;
+}
+
+.userRefsInNews:hover {
+    box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Тень */
+    background: linear-gradient(to bottom, #fcfff4, #e9e9ce); /* Градиент */
+    color: #a00;
+}

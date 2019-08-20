@@ -6,6 +6,8 @@ import mainpage from '../ui/containers/mainpage'
 import profile from '../ui/containers/profile'
 import find from '../ui/containers/find'
 import Feed from '../ui/containers/feed'
+import upload from '../ui/containers/upload'
+import uploadActivity from "./containers/uploadActivity";
 
 
 const BaseRouter = () => (
@@ -17,7 +19,9 @@ const BaseRouter = () => (
         <Route exact path='/find' component={find}/>
         <Route exact path='/find/:id' component={find}/>
         <Route exact path='/feed' component={Feed}/>
-    </div> 
+        <Route exact path='/upload' component={upload}/>
+        <Route exact path='/activity' component={uploadActivity}/>
+    </div>
 );
 
 export default BaseRouter;

@@ -3,6 +3,7 @@ import {Layout, Menu, Icon} from 'antd';
 import {withRouter} from "react-router";
 import {withTracker} from 'meteor/react-meteor-data';
 import {Meteor} from "meteor/meteor";
+import "./containers/css/layout.css"
 
 
 const {Header, Content, Footer} = Layout;
@@ -41,15 +42,15 @@ class CustomLayout extends Component {
                     >
                         <Menu.Item onClick={this.pushMainPageInHistory}>SN</Menu.Item>
                         {this.props.currentUser?
-                        <Menu.Item onClick={this.pushFindFriendsPageInHistory}>Find friends</Menu.Item>:""}
+                        <Menu.Item onClick={this.pushFindFriendsPageInHistory}>friends</Menu.Item>:""}
                         {this.props.currentUser?
-                        <Menu.Item onClick={()=>this.pushProfilePageInHistory(this.props.currentUser && this.props.currentUser.username)}>{this.props.currentUser && this.props.currentUser.username}</Menu.Item>:""}
+                        <Menu.Item onClick={()=>this.pushProfilePageInHistory(this.props.currentUser && this.props.currentUser.username)}>profile</Menu.Item>:""}
                         {this.props.currentUser?
-                        <Menu.Item onClick={()=>this.SNlogout()}>logOut</Menu.Item>:""}
-                        {this.props.currentUser?
-                        <Menu.Item onClick={()=>this.props.history.push("/feed")}>Feed</Menu.Item>:""}
+                        <Menu.Item onClick={()=>this.props.history.push("/feed")}>feed</Menu.Item>:""}
                         {!this.props.currentUser?
                         <Menu.Item onClick={()=>this.props.history.push("/login")}>login</Menu.Item>:""}
+                        {this.props.currentUser?
+                        <Menu.Item onClick={()=>this.SNlogout()}>exit</Menu.Item>:""}
                     </Menu>
                 </Header>
                 <Content color={"fgf"} style={{padding: 10, minHeight:1000}}>

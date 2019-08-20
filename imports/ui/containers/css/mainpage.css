@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+.greetings {
+    font-family: 'Raleway', sans-serif;
+    font-size: 60pt;
+    text-align: center;
+    display: inline-block;
+    color: black;
+    position: absolute;
+    top: 35%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+.subGreetings {
+    width: 50%;
+    font-family: 'Raleway', sans-serif;
+    font-size: 30pt;
+    text-align: center;
+    display: inline-block;
+    color: grey;
+    position: absolute;
+    top: 20%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+.signupRef {
+    display: inline-block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 60pt;
+    color: royalblue;
+    text-align: left;
+}
+
+.signupRef:hover {
+    box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Тень */
+    background: linear-gradient(to bottom, #fcfff4, #e9e9ce); /* Градиент */
+    color: #a00;
+}

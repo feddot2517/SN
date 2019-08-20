@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Icon, Input, Button, Carousel, Spin } from 'antd';
 import { NavLink } from 'react-router-dom';
-import './auth.css';
+import './css/auth.css';
 
 
 const FormItem = Form.Item;
@@ -19,7 +19,6 @@ class NormalLoginForm extends React.Component {
             Meteor.loginWithPassword(values.userName, values.password,(err)=>{
                 if(!err) {
                     this.props.history.push('/');
-                    alert("successful");
                 }
                 else
 
@@ -59,9 +58,6 @@ class NormalLoginForm extends React.Component {
 
                 <div style={{height:"15%"}}/>
 
-                <div className="uraccount">
-                    <h1>Your Account</h1>
-                </div>
 
 
 
@@ -69,7 +65,6 @@ class NormalLoginForm extends React.Component {
 
 
                     <div className="login">
-                        <h1>Login</h1>
                         <Form onSubmit={this.handleSubmit} className="login-form">
 
                             <FormItem>
@@ -93,28 +88,16 @@ class NormalLoginForm extends React.Component {
                                     Login
                                 </Button>
 
-                                <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleReset.bind(this)}>
-                                    Forgot Password
-                                </Button>
-
                             </FormItem>
                         </Form>
+
+                        <div>
+                            <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleCrate.bind(this)}>
+                                Create account<Icon type="arrow-right" />
+                            </Button>
+                        </div>
                     </div>
 
-                    <div className="login2">
-
-                        <h1>Register</h1>
-
-                        <li>
-                            By creating an account, you will be able to move through the rent process faster,
-                            store multiple addresses, view and track your orders in your account and more.
-                        </li>
-
-                        <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleCrate.bind(this)}>
-                            Create account<Icon type="arrow-right" />
-                        </Button>
-
-                    </div>
 
                 </div>
 

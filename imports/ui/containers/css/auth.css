@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
 .uraccount {
     padding: 20px;
     overflow: hidden;
@@ -8,23 +10,27 @@
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     text-shadow: none ;
-
-
-
+    font-family: 'Raleway', sans-serif;
 }
 
 
 .login {
+    font-family: 'Raleway', sans-serif;
     padding: 50px;
-    width: 50%;
+    width: 20%;
     height: 350px;
-    display: inline-block;
-    float: left;
-
-    background: rgba(0,0,0,0.05);
+    background: rgba(0,20,0,0.05);
+    display: flow-root;
+    position: absolute;
+    top: -10%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
 }
 
 .login2 {
+    font-family: 'Raleway', sans-serif;
     min-width: 300px;
     display: inline-block;
     padding: 50px;
@@ -33,6 +39,7 @@
 }
 
 .register {
+    font-family: 'Raleway', sans-serif;
     min-width: 300px;
     padding: 50px 10% 50px 10%;
     background: rgba(0,0,0,0.05);
@@ -41,12 +48,14 @@
 .userpage{
     padding: 84px 0 0 0;
     min-height: 1000px;
-    font: normal 30px/1 Arial Black, Gadget, sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-size: 30pt;
 }
 
 
 
 .hello {
+    font-family: 'Raleway', sans-serif;
     z-index: 10;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
@@ -61,8 +70,7 @@
     border: none;
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    font: normal 200%/0.5 Arial Black, Gadget, sans-serif;
-
+    font-size: 30pt;
     color: rgba(255,255,255,1);
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;

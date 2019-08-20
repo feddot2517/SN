@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
+.avatar {
+    height: 400px;
+    width: 300px;
+    display: inline-block;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    position: initial;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.avatar img {
+    max-width: 95%;
+    height: auto;
+    max-height:100%;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+}
+
+.uploadButton {
+    top:10%;
+}
+
+.userCard {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    color: black;
+    display: block;
+}
+
+.userCard .firstName {
+    display: inline-block;
+    margin-right: 10px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 40pt;
+}
+
+.userCard .lastName {
+    display: inline-block;
+    margin-right: 10px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 40pt;
+}
+
+.userCard .phone {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.subscript {
+    width: 100px ;
+    display: inline-block;
+    margin-right: 10px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20pt;
+}
+
+.newsBlock {
+    width: 630px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 40pt;
+    color: black;
+    display: inline-block;
+    float: right;
+    position: absolute;
+    left: 300px;
+    top: 120px;
+}
+
+.newsMap {
+    width: 630px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 80pt;
+    color: black;
+    float: right;
+    position: absolute;
+    left: 300px;
+    top: 300px;
+}
+
+.newsMap .ant-card-head {
+    font-family: 'Raleway', sans-serif;
+    color: black;
+}
+
+.result {
+    width: 200px;
+    display: inline-block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20pt;
+    color: royalblue;
+    text-align: left;
+}
+.result:hover {
+    box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Тень */
+    background: linear-gradient(to bottom, #fcfff4, #e9e9ce); /* Градиент */
+    color: #a00;
+}
+
+.inputForm {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20pt;
+}
+
+.news {
+    color: black;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14pt;
+}
+
+.deleteNewsButton {
+    float: right;
+}
+
+.activity {
+    width: 630px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 40pt;
+    color: black;
+    display: inline-block;
+    float: right;
+    position: absolute;
+    left: 1000px;
+    top: 120px;
+}
+
+.addActivityButton {
+    position: absolute;
+    top: 50px;
+    display: inline-block;
+    float: right;
+}
+
+.activityPhotos {
+    height: auto;
+    width: 300px;
+    display: inline-block;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.activityPhotos img {
+    display: inline-block;
+    margin-top: 50px;
+    max-width: 95%;
+    height: auto;
+    max-height:100%;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+}
+
+.photosTitle {
+    margin-top: 50px;
+}
+
+.activityMusic {
+    position: absolute;
+    left: 300px;
+    top: 0;
+    display: inline-block;
+    float: right;
+}
+
+.musicTitle {
+    margin-top: 130px;
+}

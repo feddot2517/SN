@@ -9,18 +9,14 @@ class App extends Component {
     render() {
         return (
             <div>
-            <Router>
-            <CustomLayout>
-                <BaseRouter />
-            </CustomLayout>
-            </Router>
+                <Router>
+                    <CustomLayout {...this.props}>
+                        <BaseRouter />
+                    </CustomLayout>
+                </Router>
             </div>
         );
     }
 }
 
-export default withTracker(() => {
-    return {
-        currentUser: Meteor.user(),
-    };
-})(App);
+export default App;
