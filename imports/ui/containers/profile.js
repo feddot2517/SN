@@ -101,7 +101,7 @@ class profile extends Component {
                     </div>:""}
 
                     {this.props.photos?
-                        <div className="activityPhotos">{/**/}
+                        <div className="activityPhotos">
                             <div className="photosTitle">Photos:</div>
                             {this.props.photos && this.props.photos.map((photo, id) => (
                                 <div key={id}>
