@@ -69,8 +69,8 @@ class profile extends Component {
             {!this.props.photos.length && <div style={{textAlign: 'center'}}>
               You didn't post any photo yet:(</div>}
             {this.props.photos && this.props.photos.map((photo, id) => (
-              <div key={id}>
-                <img src={photo.base64} alt="activity"/>
+              <div key={id} style={{width:'23%', margin: '1%', display:'inline-block'}}>
+                <img style={{width:'100%'}} src={photo.base64} alt="activity"/>
               </div>
 
             ))}
