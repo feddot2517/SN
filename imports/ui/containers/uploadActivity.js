@@ -59,6 +59,8 @@ class uploadActivity extends Component {
         const { imageUrl } = this.state;
         return (
             <div>
+                <h1>Presently, you can upload only photos, sry</h1>
+                <l>jpg or png, less that 2mb</l>
                 <Upload
                     name="avatar"
                     listType="picture-card"

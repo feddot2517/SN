@@ -8,6 +8,10 @@ import find from '../ui/containers/find'
 import Feed from '../ui/containers/feed'
 import upload from '../ui/containers/upload'
 import uploadActivity from "./containers/uploadActivity";
+import chat from "./containers/chat";
+import messages from "./containers/messages";
+import photos from "./containers/photos";
+import changelog from "./containers/changelog";
 
 
 const BaseRouter = () => (
@@ -19,8 +23,12 @@ const BaseRouter = () => (
         <Route exact path='/find' component={find}/>
         <Route exact path='/find/:id' component={find}/>
         <Route exact path='/feed' component={Feed}/>
+        <Route exact path='/messages' component={messages}/>
         <Route exact path='/upload' component={upload}/>
         <Route exact path='/activity' component={uploadActivity}/>
+        <Route exact path='/dialog/:id' component={chat}/>
+        <Route exact path='/photos/:id' component={photos}/>
+        <Route exact path='/changelog' component={changelog}/>
     </div>
 );
 

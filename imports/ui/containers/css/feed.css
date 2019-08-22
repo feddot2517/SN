@@ -12,3 +12,10 @@
     background: linear-gradient(to bottom, #fcfff4, #e9e9ce); /* Градиент */
     color: #a00;
 }
+
+.loadingBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+

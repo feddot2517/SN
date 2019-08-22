@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Accounts} from "meteor/accounts-base";
 import {withTracker} from 'meteor/react-meteor-data';
-import {Form, Icon, Input, Button, Card} from 'antd';
+import {Form, Icon, Input, Button, Card, Spin} from 'antd';
 import Profile from "../../models/profile";
 import Friend from "../../models/friend";
 import News from "../../models/news";
@@ -12,7 +12,13 @@ const FormItem = Form.Item;
 class Feed extends Component {
 
     render() {
-        console.log(this.props.news);
+
+        if (!this.props.currentUser)
+            return ( <div className="loadingBox">
+                <Spin tip="Loading...">
+                </Spin>
+            </div>);
+
         return (
             <div
                 style={{
@@ -60,10 +66,16 @@ class Feed extends Component {
 }
 export default withTracker((props)  => {
     // const {id} = props.match.params;
-    const id2s = Friend.find({id1: Meteor.user().username}).fetch().map(u => u.id2);
-    const usernames = Profile.find({_id: {$in : id2s}}).fetch().map(u => u.username);
-    return {
-        currentUser: Meteor.user(),
-        news: News.find({id1: {$in : usernames}}).fetch(),
+    if (Meteor.user()) {
+        const id2s = Friend.find({id1: Meteor.user().username}).fetch().map(u => u.id2);
+        const usernames = Profile.find({_id: {$in: id2s}}).fetch().map(u => u.username);
+        return {
+            currentUser: Meteor.user(),
+            news: News.find({id1: {$in: usernames}}).fetch(),
+        }
+    }else {
+        return {
+            currentUser: Meteor.user(),
+        }
     }
 })(Feed);

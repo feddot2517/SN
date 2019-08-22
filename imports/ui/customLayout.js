@@ -4,6 +4,8 @@ import {withRouter} from "react-router";
 import {withTracker} from 'meteor/react-meteor-data';
 import {Meteor} from "meteor/meteor";
 import "./containers/css/layout.css"
+import Message from "../models/message";
+import Friend from "../models/friend";
 
 
 const {Header, Content, Footer} = Layout;
@@ -21,6 +23,10 @@ class CustomLayout extends Component {
 
     pushFindFriendsPageInHistory = e => {
         this.props.history.push(`/find`)
+    }
+
+    pushMessagePageInHistory = e => {
+        this.props.history.push(`/messages`)
     }
 
     pushProfilePageInHistory = username => {
@@ -44,6 +50,8 @@ class CustomLayout extends Component {
                         {this.props.currentUser?
                         <Menu.Item onClick={this.pushFindFriendsPageInHistory}>friends</Menu.Item>:""}
                         {this.props.currentUser?
+                            <Menu.Item onClick={this.pushMessagePageInHistory}>{this.props.message.length} <Icon type="message"/></Menu.Item>:""}
+                        {this.props.currentUser?
                         <Menu.Item onClick={()=>this.pushProfilePageInHistory(this.props.currentUser && this.props.currentUser.username)}>profile</Menu.Item>:""}
                         {this.props.currentUser?
                         <Menu.Item onClick={()=>this.props.history.push("/feed")}>feed</Menu.Item>:""}
@@ -63,7 +71,17 @@ class CustomLayout extends Component {
 }
 
 export default withTracker(() => {
+
+    const currentUser = Meteor.user();
+
+    if (!currentUser)
+        return {};
+
+    const message = Message.find({targetUsername: Meteor.user().username, wasRead:false}).fetch().map(u => u.wasRead);
+
     return {
         currentUser: Meteor.user(),
+        friendShips: Friend.find({id1: currentUser.username}).fetch(),
+        message: message,
     };
 })(withRouter(CustomLayout));

@@ -40,3 +40,19 @@
 .signupRef:hover {
     color: blue;
 }
+
+.changelog {
+    width: 70px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    right: 0;
+    margin: auto;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20pt;
+    color: royalblue;
+    text-align: center;
+}
+.changelog:hover {
+    color: grey;
+}

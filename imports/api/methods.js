@@ -5,6 +5,7 @@ import Friend from "../models/friend";
 import News from "../models/news";
 import Avatar from "../models/avatar";
 import Activity from "../models/activity";
+import Message from "../models/message";
 
 Meteor.methods({
     'addUser'(values,callback) {
@@ -41,6 +42,28 @@ Meteor.methods({
         news.save();
     },
 
+
+    'addMessage'(username, targetUsername, messageBody) {
+
+        let message = new Message({
+            username: username,
+            targetUsername: targetUsername,
+            messageBody: messageBody,
+            wasRead: false,
+        });
+        message.save();
+    },
+
+    'makeReaded'( _id ) {
+
+        let message = Message.findOne({_id:_id});
+
+        message.wasRead=true;
+
+        message.save();
+    },
+
+
     'addAvatar'(base64, username) {
 
         Avatar.remove({username: username});
@@ -50,6 +73,12 @@ Meteor.methods({
             base64: base64,
         });
         avatar.save();
+    },
+
+    'delPhoto'(base64 ,username) {
+
+        Activity.remove({username: username}&&{base64:base64});
+
     },
     'addActivity'(base64, username) {
 
