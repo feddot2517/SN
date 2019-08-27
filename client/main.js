@@ -6,4 +6,5 @@ import 'antd/dist/antd.css'
 
 Meteor.startup(() => {
   render(<App/>, document.getElementById('render-target'));
+
 });

@@ -177,3 +177,56 @@
     top: 35%;
     margin: auto;
 }
+
+.avatar2 {
+    height: 50px;
+    width: 50px;
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+}
+
+.avatar2 img {
+    max-height:100%;
+    max-width:100%
+}
+
+.avatar3 {
+    height: 50px;
+    width: 50px;
+    margin-right: 25px;
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+}
+
+.avatar3 img {
+    max-height:100%;
+    max-width:100%
+}
+
+.userNameFindPage{
+    display: inline-block;
+    margin-right: 15px;
+    color: royalblue;
+}
+
+.userNameFindPage:hover{
+    color: blue;
+}
+
+.myFollowers{
+    display: inline-block;
+    margin-right: 15px;
+    color: black;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Тень */
+    background: linear-gradient(to bottom, #fcfff4, #e9e9ce); /* Градиент */
+
+}
+
+.myFollowers:hover{
+    box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Тень */
+    background: linear-gradient(to bottom, #fcfff4, #e9e9ce); /* Градиент */
+    color: #514643;
+}
+

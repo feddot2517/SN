@@ -56,3 +56,17 @@
 .changelog:hover {
     color: grey;
 }
+
+.musicPageTrackTitle {
+    height: 50px;
+    width: 50px;
+    margin-right: 25px;
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+}
+
+.musicPageTrackTitle img {
+    max-height:100%;
+    max-width:100%
+}

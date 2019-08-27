@@ -1,6 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import "../imports/api/methods"
 
+
 Meteor.startup(() => {
-  // code to run on server at startup
+    Meteor.setInterval(function () {
+        Meteor.call("getServerTime");
+    }, 60000);
 });

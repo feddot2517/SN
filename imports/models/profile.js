@@ -28,6 +28,17 @@ const Profile = Class.create({                  // Main class of users
             type: String,
             optional: false,
         },
+
+        lastActivity: {
+            type: Date,
+            optional: true,
+        },
+
+        onlineStatus: {
+            type: Boolean,
+            optional: true
+        }
+
     },
 
 });

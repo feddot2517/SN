@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import {Accounts} from "meteor/accounts-base";
 import {withTracker} from 'meteor/react-meteor-data';
-import {message, Form, Icon, Input, Button, Card} from 'antd';
+import {message, Form, Icon, Input, Button, Card, Spin} from 'antd';
 import Profile from "../../models/profile";
+import './css/profile.css';
+import Avatar from "../../models/avatar";
+import Online from "../../models/online";
 
 const FormItem = Form.Item;
 
@@ -29,45 +32,67 @@ class find extends Component {
     //Сделать map пока не забыл с приодящей в state строкой
 
     render() {
+
+        if (!this.props.currentUser)
+            return (<div className="loadingBox">
+                <Spin tip="Loading...">
+                </Spin>
+            </div>);
+
         return (
             <div>
-                <Form>
-
-                    <FormItem>
-                            <Input prefix={<Icon type="user"/>}
-                                   placeholder="Input user's phone"
-                                   onChange={this.onChangeUserId}/>
-
-                    </FormItem>
-
-                    <FormItem>
-                        <Button onClick={this.onClickFind}>Find friend</Button>
-                    </FormItem>
-
-
-                    <FormItem><h1>Result:</h1></FormItem>
-
-                </Form>
                 <div>
                     {this.props.profiles && this.props.profiles.map((profile, id) => (
-                        <Card key={id}>
-                            <div style={{
-                                color: 'black',
-                                display: 'inline-block',
-                                marginRight: 5}}
-                            >
-                                <div style={{display: "inline-block", marginRight: 15}}>{profile.firstName} </div>
-                                <div style={{display: "inline-block", marginRight: 15}}>{profile.lastName} </div>
-                                <div style={{display: "inline-block", marginRight: 15}}>{profile.phone} </div>
-                                <Button onClick={()=>this.addFriend(this.props.currentUser && this.props.currentUser.username
-                                    , profile._id)} type="danger">+</Button>
-                                <div style={{display: "inline-block"}}>
-                                </div>
-                                <div>
-                                </div>
-                            </div>
-                        </Card>
+                        <div key={id}>
+                            {this.props.currentUser.username !== profile.username &&
+                            <Card key={id}>
+                                <div style={{
+                                    color: 'black',
+                                    display: 'inline-block',
+                                    marginRight: 5
+                                }}
+                                >
+                                    <div style={{
+                                        display: 'inline-block',
+                                        marginRight: 25,
+                                    }}>
+                                        {Avatar.findOne({username: profile.username}) &&
+                                        <div className="avatar2">
+                                            <img src={Avatar.findOne({username: profile.username}).base64}
+                                                 alt="avatar"/>
+                                        </div>
+                                        }
 
+                                        {!Avatar.findOne({username: profile.username}) &&
+                                        <div className="avatar2">
+                                            <img src="./no-avatar.jpg" alt="noavatar"/>
+                                        </div>
+                                        }
+                                    </div>
+                                    <div style={{marginRight: 25,}} className="userNameFindPage"
+                                         onClick={() => this.props.history.push(`/profile/${profile.username}`)}>{profile.firstName} {profile.lastName} </div>
+
+
+
+                                    {/*Online*/}
+
+                                    {profile.lastActivity&&
+                                        <div style={{ display: "inline-block"}}>
+                                            {profile.onlineStatus?
+                                            <div>
+                                                        online
+                                            </div>:
+                                                <div>
+                                                    last seen at {profile.lastActivity.toLocaleString()}
+                                                </div>}
+                                        </div>}
+
+
+
+                                </div>
+                            </Card>
+                            }
+                        </div>
                     ))}
 
                 </div>
@@ -77,8 +102,14 @@ class find extends Component {
 }
 export default withTracker((props)  => {
     const {id} = props.match.params;
+
+    const currentUser = Meteor.user();
+    if (!currentUser)
+        return {};
+
     return {
         currentUser: Meteor.user(),
-        profiles: Profile.find({phone: id}).fetch(),
+        profiles: Profile.find({}).fetch(),
+
     }
 })(find);

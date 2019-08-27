@@ -12,6 +12,7 @@ import chat from "./containers/chat";
 import messages from "./containers/messages";
 import photos from "./containers/photos";
 import changelog from "./containers/changelog";
+import music from "./containers/music";
 
 
 const BaseRouter = () => (
@@ -29,6 +30,7 @@ const BaseRouter = () => (
         <Route exact path='/dialog/:id' component={chat}/>
         <Route exact path='/photos/:id' component={photos}/>
         <Route exact path='/changelog' component={changelog}/>
+        <Route exact path='/music' component={music}/>
     </div>
 );
 

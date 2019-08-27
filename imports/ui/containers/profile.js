@@ -3,16 +3,48 @@ import {withTracker} from "meteor/react-meteor-data";
 import Profile from "../../models/profile";
 import Friend from "../../models/friend";
 import News from "../../models/news";
-import {Spin, Button, Card, Icon, Input, message} from "antd";
+import {Spin, Button, Card, Icon, Input, message, Modal, Audio} from "antd";
 import './css/profile.css';
 import Avatar from "../../models/avatar";
 import Activity from "../../models/activity";
+import Online from "../../models/online";
 
 // App component - represents the whole app
 class profile extends Component {
 
+  addFriend = (current ,friendLogin) => {
+    Meteor.call('addFriendShip', current, friendLogin)
+    message.success('Subscribe added');
+  };
+
+  closeModal= (profile) => {
+    this.setState({
+      visible: false,
+    });
+    this.props.history.push(`/profile/${profile}`);
+  };
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOk = e => {
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = e => {
+    this.setState({
+      visible: false,
+    });
+  };
+
   state = {
     newsText: "",
+    visible: false,
   };
 
   delNews = newsText => {
@@ -21,6 +53,7 @@ class profile extends Component {
 
   delFriends = (targetId) => {
     Meteor.call("delFriend", targetId);
+    message.error('Subscribe deleted');
   };
 
   addNews = e => {
@@ -48,10 +81,13 @@ class profile extends Component {
 
           {/*AVATAR*/}
           <div className='block'>
-            {this.props.avatar &&
+            {this.props.avatar ?
             <div className="avatar">
               <img src={this.props.avatar.base64} alt="avatar"/>
-            </div>}
+            </div>:
+                <div className="avatar">
+                  <img src="/no-avatar.jpg" alt="no-avatar"/>
+                </div>}
 
             {this.props.match.params.id === this.props.currentUser.username &&
             <Button
@@ -59,6 +95,44 @@ class profile extends Component {
               onClick={() => this.props.history.push("/upload")}
             >UploadAvatar</Button>}
           </div>
+
+          {/*FOLLOWERS*/}
+          {this.props.match.params.id === this.props.currentUser.username &&
+          <div className="block" style={{}}>
+
+            <Button
+                style={{width: '90%', marginLeft: '5%', margin: '5%'}}
+                onClick={this.showModal} type="default">My followers</Button>
+
+            <Modal
+                title="Your followers:"
+                visible={this.state.visible}
+                onOk={this.handleOk}
+                onCancel={this.handleCancel}
+            >
+              {this.props.followers && this.props.followers.map((profile, id) => (
+                  <div key={id} style={{display: "inline-block", marginBottom:25}}>
+
+                    {Avatar.findOne({username: profile.id1}) &&
+                    <div className="avatar3">
+                      <img src={Avatar.findOne({username: profile.id1}).base64} alt="avatar"/>
+                    </div>
+                    }
+
+                    {!Avatar.findOne({username: profile.id1}) &&
+                    <div className="avatar3">
+                      <img src="/no-avatar.jpg" alt="noavatar"/>
+                    </div>
+                    }
+
+                    <div className="userNameFindPage" onClick={()=>this.closeModal(profile.id1)} key={id}>
+                      {Profile.findOne({username: profile.id1}).firstName}
+                    </div>
+                  </div>
+              ))}
+            </Modal>
+          </div>
+          }
 
 
           {/*ACTIVITY*/}
@@ -92,9 +166,13 @@ class profile extends Component {
 
           {/*MUSIC*/}
           <div className='block'>
-            <div className="sideTitle">Music:</div>
-            <div style={{textAlign: 'center'}}>
-              You didn't post any music yet:(
+            <div className="sideTitle">Music:
+            <div>
+              <audio controls="controls">
+                <source src="../track.mp3" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+            </div>
             </div>
           </div>
 
@@ -109,20 +187,19 @@ class profile extends Component {
               no subscriptions</div>}
 
             {this.props.friendShips && this.props.friendShips.map((profile, id) => (
-              <div key={id} style={{padding: '0 10px 0 10px'}}>
-                <div
-                  className='ant-card ant-card ant-card-bordered ant-card-bordered ant-card-hoverable'
-                  style={{float:'left',  width:'70%', height: 35, padding: 5}}
-                  onClick={() => this.props.history.push(`/profile/${Profile.findOne({_id: profile.id2}).username}`)}
+                <div key={id} style={{padding: '0 10px 0 10px'}}>
+                  <div
+                      className='ant-card ant-card ant-card-bordered ant-card-bordered ant-card-hoverable'
+                      style={{float:'left',  width:'70%', height: 35, padding: 5}}
+                      onClick={() => this.props.history.push(`/profile/${Profile.findOne({_id: profile.id2}).username}`)}
                   >{Profile.findOne({_id: profile.id2}).username}
-                </div>
+                  </div>
 
 
                   <Button style={{float:'left',height: 35,width:'30%'}} onClick={() => this.delFriends(profile._id)} type="danger">Unsubscribe</Button></div>
 
             ))}
           </div>}
-
 
         </div>
 
@@ -134,15 +211,51 @@ class profile extends Component {
             <div className="userCard">
               <div className="firstName">{this.props.profiles.firstName} </div>
               <div className="lastName">{this.props.profiles.lastName} </div>
-              {this.props.match.params.id !== this.props.currentUser.username &&
+
+              {/*ONLINE*/}
+
+              {this.props.profiles.lastActivity&&
               <div>
+                {this.props.profiles.onlineStatus?
+                    <div style={{color: "#23A40E"}}>
+                      online
+                    </div>:
+                    <div>
+                      last seen at {this.props.profiles.lastActivity.toLocaleString()}
+                    </div>}
+              </div>}
+
+              {/*MESSAGE*/}
+              {this.props.match.params.id !== this.props.currentUser.username &&
+              <div style={{}}>
                 <Button onClick={()=>this.props.history.push(`/dialog/${this.props.profiles.username}`)} type="default">
                   <Icon type="message" />
                 </Button>
               </div>}
 
+              {/*SUBSCRIBE*/}
+              {this.props.match.params.id !== this.props.currentUser.username&&
+                  <div>
+                      {this.props.match.params.id !== this.props.currentUser.username&&!Friend.findOne({id1: this.props.currentUser.username, id2: this.props.profiles._id}) &&
+                      <div style={{display: "inline-block"}}>
+                        <Button onClick={()=>this.addFriend(this.props.currentUser.username, this.props.profiles._id)} type="default">
+                            subscribe
+                        </Button>
+                      </div>}
+
+                      {this.props.match.params.id !== this.props.currentUser.username&&Friend.findOne({id1: this.props.currentUser.username, id2: this.props.profiles._id}) &&
+                      <div style={{display: "inline-block"}}>
+                        <Button onClick={()=>this.delFriends(Friend.findOne({id1: this.props.currentUser.username, id2: this.props.profiles._id})._id)} type="danger">
+                            unsubscribe
+                        </Button>
+                      </div>}
+                  </div>
+              }
+
             </div>
           </div>
+
+
 
           {/*NEWS*/}
           <div className='block' style={{minHeight: 1000}}>
@@ -207,6 +320,10 @@ export default withTracker((props) => {
     currentUser: currentUser,
     profiles: Profile.findOne({username: id}),
     friendShips: Friend.find({id1: currentUser.username}).fetch(),
+
+    myLastActivity: Profile.findOne({username: currentUser.username}).lastActivity ,
+
+    followers: Friend.find({id2: Profile.findOne({username: currentUser.username})._id}).fetch(),
     news: News.find({id1: id}).fetch(),
     photos: Activity.find({username: id}).fetch(),
   }

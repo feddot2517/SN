@@ -6,6 +6,7 @@ import News from "../models/news";
 import Avatar from "../models/avatar";
 import Activity from "../models/activity";
 import Message from "../models/message";
+import Online from "../models/online";
 
 Meteor.methods({
     'addUser'(values,callback) {
@@ -20,6 +21,7 @@ Meteor.methods({
             phone: values.phone,
             firstName: values.firstName,
             lastName: values.lastName,
+            online: false,
         });
         profile.save();
     },
@@ -64,6 +66,16 @@ Meteor.methods({
     },
 
 
+    'online'(_id) {
+
+        let profile = Profile.findOne({username: _id});
+
+        profile.lastActivity=new Date();
+
+        profile.save();
+    },
+
+
     'addAvatar'(base64, username) {
 
         Avatar.remove({username: username});
@@ -93,6 +105,7 @@ Meteor.methods({
 
         News.remove({newsText: newsText});
     },
+
     'delFriend'(targetId) {
 
         Friend.remove({_id: targetId});
@@ -102,6 +115,43 @@ Meteor.methods({
         Accounts.setPassword(userID, new_password);
     },
 
+
+    'getServerTime'() {
+        const serverTime = new Date();
+
+        const profiles = Profile.find({}).fetch();
+
+        profiles.map(function (profile) {
+            if(profile.lastActivity){
+
+                const profileLastActivity = profile.lastActivity;
+
+                if (Math.abs(serverTime.getMinutes() - profileLastActivity.getMinutes() ) <= 1 &&
+                    (serverTime.getHours() === profileLastActivity.getHours()) &&
+                    (serverTime.getDay() === profileLastActivity.getDay()) &&
+                    (serverTime.getMonth() === profileLastActivity.getMonth())) {
+
+                    profile.onlineStatus=true;
+
+                }
+
+                else if (Math.abs(serverTime.getMinutes() - profileLastActivity.getMinutes() ) >= 1 &&
+                    (serverTime.getHours() - profileLastActivity.getHours()<=1) &&
+                    (serverTime.getDay() === profileLastActivity.getDay()) &&
+                    (serverTime.getMonth() === profileLastActivity.getMonth())) {
+
+                }
+                else {
+
+                    profile.onlineStatus=false;
+                }
+
+                profile.save();
+            }
+
+        });
+
+    }
 
 
 });

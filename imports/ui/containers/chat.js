@@ -87,7 +87,7 @@ class Chat extends Component {
                             <div>
                                 {message.username===this.props.currentUser.username && message.targetUsername===this.props.match.params.id&&!message.wasRead?
                                     <div>
-                                        <Card style={{background: "royalblue"}} key={id+1}>
+                                        <Card style={{background: "#BADFE3"}} key={id+1}>
                                             <div style={{
                                                 fontSize: '10pt',
                                                 display: 'inline-block',
