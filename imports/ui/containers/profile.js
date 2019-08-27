@@ -215,14 +215,8 @@ class profile extends Component {
               {/*ONLINE*/}
 
               {this.props.profiles.lastActivity&&
-              <div>
-                {this.props.profiles.onlineStatus?
-                    <div style={{color: "#23A40E"}}>
-                      online
-                    </div>:
-                    <div>
-                      last seen at {this.props.profiles.lastActivity.toLocaleString()}
-                    </div>}
+              <div style={{ display: "inline-block"}}>
+                {this.props.profiles.onlineStatus}
               </div>}
 
               {/*MESSAGE*/}

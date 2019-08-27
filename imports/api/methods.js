@@ -131,19 +131,32 @@ Meteor.methods({
                     (serverTime.getDay() === profileLastActivity.getDay()) &&
                     (serverTime.getMonth() === profileLastActivity.getMonth())) {
 
-                    profile.onlineStatus=true;
+                    profile.onlineStatus="online";
 
                 }
 
-                else if (Math.abs(serverTime.getMinutes() - profileLastActivity.getMinutes() ) >= 1 &&
-                    (serverTime.getHours() - profileLastActivity.getHours()<=1) &&
+                else if (Math.abs(serverTime.getMinutes() - profileLastActivity.getMinutes() ) > 1 &&
+                    ( serverTime.getMinutes() < profileLastActivity.getMinutes() )&&
+                    (serverTime.getHours() - profileLastActivity.getHours()===1) &&
                     (serverTime.getDay() === profileLastActivity.getDay()) &&
                     (serverTime.getMonth() === profileLastActivity.getMonth())) {
 
+                    profile.onlineStatus="last seen "+(Math.abs (60+serverTime.getMinutes() - profileLastActivity.getMinutes()) )+ " minutes ago"
+
                 }
+
+                else if (Math.abs(serverTime.getMinutes() - profileLastActivity.getMinutes() ) > 1 &&
+                    (serverTime.getHours() - profileLastActivity.getHours()===0) &&
+                    (serverTime.getDay() === profileLastActivity.getDay()) &&
+                    (serverTime.getMonth() === profileLastActivity.getMonth())) {
+
+                    profile.onlineStatus="last seen "+(Math.abs (serverTime.getMinutes() - profileLastActivity.getMinutes()) )+ " minutes ago"
+
+                }
+
                 else {
 
-                    profile.onlineStatus=false;
+                    profile.onlineStatus="last seen at "+(profileLastActivity.toLocaleString())
                 }
 
                 profile.save();

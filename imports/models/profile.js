@@ -35,7 +35,7 @@ const Profile = Class.create({                  // Main class of users
         },
 
         onlineStatus: {
-            type: Boolean,
+            type: String,
             optional: true
         }
 
