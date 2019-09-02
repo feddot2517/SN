@@ -8,6 +8,7 @@ import './css/profile.css';
 import Avatar from "../../models/avatar";
 import Activity from "../../models/activity";
 import Online from "../../models/online";
+import Music from "../../models/music";
 
 // App component - represents the whole app
 class profile extends Component {
@@ -64,6 +65,10 @@ class profile extends Component {
 
   onChangeInputTextNews = e => {
     this.setState({newsText: e.target.value})
+  };
+
+  setCurrentPlayingMusic = musicFile => {
+    Session.set('currentMusic', musicFile)
   };
 
   render() {
@@ -166,14 +171,22 @@ class profile extends Component {
 
           {/*MUSIC*/}
           <div className='block'>
-            <div className="sideTitle">Music:
-            <div>
-              <audio controls="controls">
-                <source src="../track.mp3" type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
+            <div className='sideTitle'>Music</div>
+            <div style={{textAlign: 'center'}}>
+              <Button
+                  style={{width: '90%', marginLeft: '5%', margin: '5%'}}
+                  onClick={() => this.props.history.push("/upload/music")} type="default">Add music</Button>
             </div>
-            </div>
+            {this.props.music && this.props.music.map((music, id) => (
+                <div className='block' key={id}>
+                  <div className="profileMusicTitle">{music.meta.trackName}</div>
+                  <div style={{display:"inline-block", float:"right"}}>
+                    <Button type="default" onClick={()=>this.setCurrentPlayingMusic(music)}>
+                        <Icon type="caret-right" />
+                    </Button></div>
+                </div>
+
+            ))}
           </div>
 
 
@@ -215,8 +228,14 @@ class profile extends Component {
               {/*ONLINE*/}
 
               {this.props.profiles.lastActivity&&
-              <div style={{ display: "inline-block"}}>
-                {this.props.profiles.onlineStatus}
+              <div style={{ display: "inline-block", color:"royalblue"}}>
+                {this.props.profiles.onlineStatus?
+                    <div>
+                      {this.props.profiles.onlineStatus}
+                    </div>:
+                    <div>
+                      last seen at {this.props.profiles.lastActivity.toLocaleString()}
+                    </div>}
               </div>}
 
               {/*MESSAGE*/}
@@ -320,6 +339,7 @@ export default withTracker((props) => {
     followers: Friend.find({id2: Profile.findOne({username: currentUser.username})._id}).fetch(),
     news: News.find({id1: id}).fetch(),
     photos: Activity.find({username: id}).fetch(),
+    music: Music.find({userId: currentUser._id}).fetch(),
   }
 })(profile);
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {withTracker} from 'meteor/react-meteor-data';
 import { Upload, Icon, message, Button } from 'antd';
 import './css/profile.css';
-import Activity from "../../models/activity";
 
 function getBase64(img, callback) {
     const reader = new FileReader();

@@ -13,6 +13,7 @@ import messages from "./containers/messages";
 import photos from "./containers/photos";
 import changelog from "./containers/changelog";
 import music from "./containers/music";
+import uploadMusic from "./containers/uploadMusic";
 
 
 const BaseRouter = () => (
@@ -26,6 +27,7 @@ const BaseRouter = () => (
         <Route exact path='/feed' component={Feed}/>
         <Route exact path='/messages' component={messages}/>
         <Route exact path='/upload' component={upload}/>
+        <Route exact path='/upload/music' component={uploadMusic}/>
         <Route exact path='/activity' component={uploadActivity}/>
         <Route exact path='/dialog/:id' component={chat}/>
         <Route exact path='/photos/:id' component={photos}/>

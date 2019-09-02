@@ -6,7 +6,9 @@ import News from "../models/news";
 import Avatar from "../models/avatar";
 import Activity from "../models/activity";
 import Message from "../models/message";
-import Online from "../models/online";
+import Music from "../models/music";
+
+const fs = Npm.require("fs");
 
 Meteor.methods({
     'addUser'(values,callback) {
@@ -101,6 +103,15 @@ Meteor.methods({
         activity.save();
     },
 
+    'addMusic'(username, file, fileName, fileType){
+        /*Music.write(file, {
+            name: file.name,
+            userId: username,
+            type: file.type,
+            meta: {},
+        });*/
+    },
+
     'delNews'(newsText) {
 
         News.remove({newsText: newsText});
@@ -156,7 +167,7 @@ Meteor.methods({
 
                 else {
 
-                    profile.onlineStatus="last seen at "+(profileLastActivity.toLocaleString())
+                    profile.onlineStatus=null
                 }
 
                 profile.save();
@@ -164,7 +175,7 @@ Meteor.methods({
 
         });
 
-    }
+    },
 
 
 });

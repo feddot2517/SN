@@ -44,10 +44,10 @@ class messages extends Component {
 
                         {/*ONLINE*/}
                         {profile.lastActivity&&
-                        <div style={{ display: "inline-block"}}>
+                        <div style={{ display: "inline-block", color:"royalblue"}}>
                             {profile.onlineStatus?
                                 <div>
-                                    online
+                                    {profile.onlineStatus}
                                 </div>:
                                 <div>
                                     last seen at {profile.lastActivity.toLocaleString()}

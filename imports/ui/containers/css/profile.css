@@ -230,3 +230,13 @@
     color: #514643;
 }
 
+.profileMusicTitle{
+    display: inline-block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15pt;
+}
+
+.profileMusic{
+    width: 100%;
+}
+

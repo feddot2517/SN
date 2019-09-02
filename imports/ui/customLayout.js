@@ -69,6 +69,17 @@ class CustomLayout extends Component {
                 </Header>
                 <Content color={"fgf"} style={{padding: 10, minHeight:1000}}>
                     {this.props.children}
+
+                    {this.props.currentMusic&&<div className="musicPlayer">
+                        <div style={{position: "center", display:"inline-block", width: 300}}>
+                            <div style={{display:"inline-block"}}>{this.props.currentMusic.meta.trackName}</div>
+                            <audio controls="controls" autoPlay="autoplay"
+                            >
+                                <source src={`../${this.props.currentMusic._id}.${this.props.currentMusic.ext}`} type={this.props.currentMusic.type} />
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>}
                 </Content>
                 <Footer style={{textAlign: 'center'}}>fed.
                 </Footer>
@@ -93,6 +104,7 @@ export default withTracker(() => {
     const message = Message.find({targetUsername: Meteor.user().username, wasRead:false}).fetch().map(u => u.wasRead);
 
     return {
+        currentMusic: Session.get('currentMusic'),
         currentUser: Meteor.user(),
         friendShips: Friend.find({id1: currentUser.username}).fetch(),
         message: message,

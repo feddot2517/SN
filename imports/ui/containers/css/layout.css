@@ -3,3 +3,16 @@
 .layout {
     font-family: 'Raleway', sans-serif;
 }
+
+.musicPlayer{
+    display: block;
+    position: fixed;
+    bottom:0;
+    text-align: center;
+    width: 100%;
+    height: 100px;
+    color: black;
+    background: snow;
+    border-top-color: royalblue;
+    border-top-style: solid; /* Стиль рамки вокруг параграфа */
+}

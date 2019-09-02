@@ -78,7 +78,13 @@ class find extends Component {
 
                                     {profile.lastActivity&&
                                         <div style={{ display: "inline-block"}}>
-                                            {profile.onlineStatus}
+                                            {profile.onlineStatus?
+                                                <div>
+                                                    {profile.onlineStatus}
+                                                </div>:
+                                                <div>
+                                                    last seen at {profile.lastActivity.toLocaleString()}
+                                                </div>}
                                         </div>}
 
 

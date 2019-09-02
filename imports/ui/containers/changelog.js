@@ -7,7 +7,18 @@ class changelog extends Component {
     render() {
         return (
             <div>
+                {/**/}
+                <div>
+                    <p style={{color: "black"}}>ver. 0.2.4</p>
+                </div>
 
+                <div>
+                    <p>where is version 0.2.3?</p>
+                    <p>Last fix for online status</p>
+                    <p>this one is definitely last</p>
+                    <p>music would be added in 0.2.5</p>
+                </div>
+                {/**/}
                 <div>
                     <p style={{color: "black"}}>ver. 0.2.2</p>
                 </div>
@@ -16,7 +27,7 @@ class changelog extends Component {
                     <p>Online status linked to server time</p>
                     <p>Online status linked to server time</p>
                 </div>
-
+                {/**/}
                 <div>
                     <p style={{color: "black"}}>ver. 0.2.1</p>
                 </div>
@@ -24,7 +35,7 @@ class changelog extends Component {
                 <div>
                     <p>Minor fixes for online status</p>
                 </div>
-
+                {/**/}
                 <div>
                     <p style={{color: "black"}}>ver. 0.2.0</p>
                 </div>
@@ -36,7 +47,7 @@ class changelog extends Component {
                     <p>User search function temporarily disabled</p>
                     <p>Added test music player</p>
                 </div>
-
+                {/**/}
                 <div>
                     <p style={{color: "black"}}>ver. 0.1.1</p>
                 </div>
@@ -46,7 +57,7 @@ class changelog extends Component {
                     <p>Added view for user photo activity</p>
                     <p>Was added count for new messages</p>
                 </div>
-
+                {/**/}
                 <div>
                     <p style={{color: "black"}}>ver. 0.1.0</p>
                 </div>
